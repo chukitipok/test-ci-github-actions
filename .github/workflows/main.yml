@@ -8,7 +8,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+
+  server:
 
     runs-on: ubuntu-latest
 
@@ -36,7 +37,11 @@ jobs:
         ls -l
         npm i
         npm run ci
-        cd ../..
+
+  client:
+
+    needs: server
+
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
